@@ -1,0 +1,43 @@
+<%= render('shared/header') %>
+
+<div class="max-w-2xl">
+  <h2 class="font-bold text-xl mb-4 border-bottom-2">Создание чека</h2>
+</div>
+
+<div class="max-w-2xl">
+  <%= form_with(model: @receipt, class: "w-full") do |form| %>
+    <div class="mb-4">
+      <%= form.label :client_phone, 'Телефон', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :client_phone, autofocus: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :attraction_id, 'Аттракцион', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.collection_select :attraction_id, Attraction.all, :id, :name, { prompt: 'Выберите аттракцион' }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :quantity, 'Количество', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.number_field :quantity, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :cycle, 'Время', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.select :cycle, Receipt::CYCLES, { prompt: 'Выберите время (цикл)' }, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :cash_pay, 'Оплата наличными', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.number_field :cash_pay, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :card_pay, 'Оплата Kaspi', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.number_field :card_pay, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="flex items-center justify-end">
+      <%= form.submit "Создать и распечатать", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 cursor-pointer rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>
+</div>

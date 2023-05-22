@@ -1,0 +1,41 @@
+<%= render('shared/header') %>
+
+<section>
+  <div class="flex flex-row justify-between">
+    <h2 class="text-xl font-bold mb-4">Последние чеки</h2>
+    <%= link_to('Создать', new_receipt_path, class: 'bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded mb-4') %>
+  </div>
+
+  <table class="min-w-full bg-white border border-gray-300">
+    <thead>
+      <tr>
+        <th class="px-6 py-3 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">ID</th>
+        <th class="px-6 py-3 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">Телефон</th>
+        <th class="px-6 py-3 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">Аттракцион</th>
+        <th class="px-6 py-3 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">Количество</th>
+        <th class="px-6 py-3 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">Сумма</th>
+        <th class="px-6 py-3 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">Действия</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-300">
+      <% @receipts.each do |receipt| %>
+        <tr class="<%= cycle('bg-gray-50', 'bg-white') %>">
+          <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"><%= receipt.id %></td>
+          <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 font-bold">
+            <%= link_to(receipt.client_phone, receipt, class: 'text-blue-500 font-bold underline') %>
+          </td>
+          <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"><%= receipt.attraction.name %></td>
+          <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"><%= receipt.quantity %></td>
+          <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"><%= receipt.total_price %></td>
+          <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
+            <%= link_to('Показать чек', cheque_path(receipt), target: '_blank', class: 'text-blue-500 font-bold underline') %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="flex flex-col my-4">
+    <%= link_to('Посмотреть все чеки', receipts_path, class: 'underline text-blue-600 text-bold') %>
+  </div>
+</section>

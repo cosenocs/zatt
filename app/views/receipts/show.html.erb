@@ -1,0 +1,105 @@
+<%= render('shared/header') %>
+
+<div class="max-w-2xl">
+  <h2 class="font-bold text-xl mb-4 border-bottom-2">
+    Информация о чеке: №<%= @receipt.id %>
+  </h2>
+  <div class="pb-4">
+    <%= link_to('Показать чек', cheque_path(@receipt), target: '_blank', class: 'text-blue-500 font-bold underline') %>
+  </div>
+</div>
+
+<div class="max-w-sm">
+  <table class="min-w-full bg-white border border-gray-300">
+    <tr>
+      <th class="py-2 px-4 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+        Номер чека
+      </th>
+      <td class="py-2 px-4 text-sm leading-5 text-gray-500">
+        <%= @receipt.id %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="py-2 px-4 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+        Бизнес
+      </th>
+      <td class="py-2 px-4 text-sm leading-5 text-gray-500">
+        <%= @receipt.user.business %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="py-2 px-4 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+        Телефон клиента
+      </th>
+      <td class="py-2 px-4 text-sm leading-5 text-gray-500">
+        <%= @receipt.client_phone %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="py-2 px-4 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+        Выбранный аттракцион
+      </th>
+      <td class="py-2 px-4 text-sm leading-5 text-gray-500">
+        <%= @receipt.attraction.name %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="py-2 px-4 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+        Цена за единицу (1)
+      </th>
+      <td class="py-2 px-4 text-sm leading-5 text-gray-500">
+        <%= @receipt.attraction.price %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="py-2 px-4 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+        Количество персон
+      </th>
+      <td class="py-2 px-4 text-sm leading-5 text-gray-500">
+        <%= @receipt.quantity %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="py-2 px-4 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+        Сумма
+      </th>
+      <td class="py-2 px-4 text-sm leading-5 text-gray-500">
+        <%= @receipt.total_price %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="py-2 px-4 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+        Оплата наличными
+      </th>
+      <td class="py-2 px-4 text-sm leading-5 text-gray-500">
+        <%= @receipt.cash_pay %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="py-2 px-4 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+        Оплата Kaspi
+      </th>
+      <td class="py-2 px-4 text-sm leading-5 text-gray-500">
+        <%= @receipt.card_pay %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="py-2 px-4 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+        Дата / время
+      </th>
+      <td class="py-2 px-4 text-sm leading-5 text-gray-500">
+        <%= @receipt.created_at.strftime('%d.%m.%Y %H:%M') %>
+      </td>
+    </tr>
+
+  </table>
+</div>

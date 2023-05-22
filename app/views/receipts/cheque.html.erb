@@ -1,0 +1,47 @@
+<style>
+  .cheque {
+    max-width: 266px;
+    border: 1px solid grey;
+    padding: 16px;
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
+
+  .business {
+    font-weight: bold;
+    font-size: 18px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .item {
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed grey;
+  }
+
+  .thanks {
+    margin: 16px 0;
+    text-align: center;
+  }
+</style>
+
+<% @cheque_qty.times do %>
+  <div class="cheque">
+    <div class="business">
+      <%= @receipt.user.business %>
+    </div>
+
+    <div class="item">Клиент: <strong><%= @receipt.client_phone %></strong></div>
+    <div class="item">Дата/время: <strong><%= @receipt.created_at.strftime('%d.%m.%Y %H:%M') %></strong></div>
+    <div class="item">Аттракцион: <strong><%= @receipt.attraction.name %></strong></div>
+    <div class="item">Цикл: <strong><%= @receipt.attraction.cycle_in_minutes %> мин.</strong></div>
+    <div class="item">Кол-во персон: <strong><%= @receipt.quantity %></strong></div>
+    <div class="item">Сумма: <strong><%= @receipt.total_price %></strong></div>
+
+    <div class="thanks">
+      Спасибо за покупку! Желаем вам весело провести время с нами!
+    </div>
+  </div>
+<% end %>
